@@ -36,10 +36,10 @@
                 <div class="single-right-content">
                     <div class="navbar-right-flex">
                         <div class="navbar-right-btn">
-                            <a href="login.html"> Log In </a>
+                            <a href="login.php"> Log In </a>
                         </div>
                         <div class="btn-wrapper">
-                            <a href="signup.html" class="cmn-btn btn-bg-1 radius-10"> Sign Up </a>
+                            <a href="signup.php" class="cmn-btn btn-bg-1 radius-10"> Sign Up </a>
                         </div>
                     </div>
                 </div>
