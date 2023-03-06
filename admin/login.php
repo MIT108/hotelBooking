@@ -19,12 +19,17 @@ if(isset($_POST['login'])){
     $emailQuery = "SELECT * FROM users WHERE email = '" . $_POST['email'] . "'";
     $emailResult = $conn->query($emailQuery);
     if ($emailResult->num_rows > 0) {
+        $account = false;
         while($row = $emailResult->fetch_assoc()) {
             if (md5($_POST['password']) === $row['password']) {
+                $_SESSION['authUser'] = $row;
+                $account = true;
                 header("Location: index.php");
             }
         } 
-        $_SESSION['error'] = "Account do not exist";
+        if(!$account){
+            $_SESSION['error'] = "Account do not exist";
+        }
     } else {
         $_SESSION['error'] = "Account do not exist";
     }
