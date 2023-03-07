@@ -38,5 +38,41 @@ if(isset($_POST['make_reservation'])){
         $_SESSION['error'] = "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 }
+$reservationCheckout = [];
+if(isset($_GET['id'])){
+    $res_id = $_GET['id'];
+    $reservationQuery = "SELECT * FROM reservations WHERE id = $res_id";
+    $res = $conn->query($reservationQuery);
+    $res = $res->fetch_assoc();
+    $reservationCheckout['reservation'] = $res;
+    $hotelQuery = "SELECT * FROM users WHERE id = ".$res['hotel_id']."";
+    $cus = $conn->query($hotelQuery);
+    $reservationCheckout['hotel'] = $cus->fetch_assoc();
+    $roomQuery = "SELECT * FROM rooms WHERE id = ".$res['room_id']."";
+    $ro = $conn->query($roomQuery);
+    $reservationCheckout['room'] = $ro->fetch_assoc();
+}
+
+if(isset($_POST['checkout'])){
+    var_dump($_POST);
+    die();
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $email = $_POST['email'];
+    $country = $_POST['country'];
+    $city = $_POST['city'];
+    $zip = $_POST['zip'];
+    $payment_method = $_POST['payment_method'];
+    $payment_number = $_POST['payment_number'];
+    $charge = $_POST['charge'];
+    $discount = $_POST['discount'];
+    $payed_amount = $_POST['payed_amount'];
+    $customer_id = $_POST['customer_id'];
+    $hotel_id = $_POST['hotel_id'];
+    $room_id = $_POST['room_id'];
+
+}
 
 ?>

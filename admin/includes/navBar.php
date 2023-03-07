@@ -56,6 +56,12 @@ if(isset($_GET['logout'])){
                         <span>Rooms</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a href="reservations.php" class="sidebar-link">
+                        <i class="bi bi-view-list"></i>
+                        <span>Reservations</span>
+                    </a>
+                </li>
 
 
                 <li class="sidebar-item">

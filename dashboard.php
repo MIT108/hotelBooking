@@ -129,17 +129,32 @@ require('includes/navBar.php');
                         </div>
                     </div>
                     <div class="dashboard-reservation">
-                        <div class="single-reservation bg-white base-padding show open">
+                        <?php foreach ($reservations as $reservation) { ?>
+                        <div class="single-reservation bg-white base-padding">
                             <div class="single-reservation-expandIcon"> <i class="las la-angle-down"></i> </div>
                             <div class="single-reservation-head">
                                 <div class="single-reservation-flex">
                                     <div class="single-reservation-content">
                                         <h5 class="single-reservation-content-title"> Reservation ID </h5>
-                                        <span class="single-reservation-content-id"> #824409583563 </span>
+                                        <span class="single-reservation-content-id"> #<?= $reservation['reservation']['id']?> </span>
                                     </div>
+                                    <?php if($reservation['reservation']['status'] == 'pending'){ ?>
                                     <div class="single-reservation-btn">
                                         <a href="javascript:void(0)" class="dash-btn btn-pending"> Pending </a>
                                     </div>
+                                    <?php }else if($reservation['reservation']['status'] == 'accepted'){ ?>
+                                    <div class="single-reservation-btn">
+                                        <a href="javascript:void(0)" class="dash-btn btn-accepted"> Accepted </a>
+                                    </div>
+                                    <?php } else if ($reservation['reservation']['status'] == 'cancelled'){?>
+                                    <div class="single-reservation-btn">
+                                        <a href="javascript:void(0)" class="dash-btn btn-cancelled"> Cancelled </a>
+                                    </div>
+                                    <?php }else if ($reservation['reservation']['status'] == 'completed'){?>
+                                    <div class="single-reservation-btn">
+                                        <a href="javascript:void(0)" class="dash-btn btn-completed"> Completed </a>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="single-reservation-inner">
@@ -194,157 +209,14 @@ require('includes/navBar.php');
                                                 Mexico 31134 </p>
                                         </div>
                                         <div class="single-reservation-btn">
-                                            <a href="javascript:void(0)" class="dash-btn popup-click"> <i
-                                                    class="las la-exclamation-circle"></i> Cancel? </a>
+                                            <a href="checkout.php?id=<?= $reservation['reservation']['id'] ?>" class="dash-btn popup-click"> <i
+                                                    class="las la-exclamation-circle"></i> Checkout? </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="single-reservation bg-white base-padding">
-                            <div class="single-reservation-expandIcon"> <i class="las la-angle-down"></i> </div>
-                            <div class="single-reservation-head">
-                                <div class="single-reservation-flex">
-                                    <div class="single-reservation-content">
-                                        <h5 class="single-reservation-content-title"> Reservation ID </h5>
-                                        <span class="single-reservation-content-id"> #824409583563 </span>
-                                    </div>
-                                    <div class="single-reservation-btn">
-                                        <a href="javascript:void(0)" class="dash-btn btn-cancelled"> Cancelled </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-reservation-inner">
-                                <div class="single-reservation-item">
-                                    <div class="single-reservation-name">
-                                        <h5 class="single-reservation-name-title"> Nelson Norman </h5>
-                                        <p class="single-reservation-name-para"> (208) 555-0112 · 8502 Preston Rd.
-                                            Inglewood, Maine 98380
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="single-reservation-item">
-                                    <div class="single-reservation-details">
-                                        <div class="single-reservation-details-item">
-                                            <span class="single-reservation-details-subtitle"> Check in </span>
-                                            <h5 class="single-reservation-details-title"> 10:30 AM, 23 Jun 22 </h5>
-                                        </div>
-                                        <div class="single-reservation-details-item">
-                                            <span class="single-reservation-details-subtitle"> Check Out </span>
-                                            <h5 class="single-reservation-details-title"> 10:30 AM, 28 Jun 22 </h5>
-                                        </div>
-                                        <div class="single-reservation-details-item">
-                                            <span class="single-reservation-details-subtitle"> Guests & Rooms </span>
-                                            <h5 class="single-reservation-details-title"> 4 Adults, 2 Children, 3 Rooms
-                                            </h5>
-                                        </div>
-                                        <div class="single-reservation-details-item">
-                                            <span class="single-reservation-details-subtitle"> Booked </span>
-                                            <h5 class="single-reservation-details-title"> 28 Jun 22 </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-reservation-item">
-                                    <div class="single-reservation-flex">
-                                        <div class="single-reservation-content">
-                                            <h5 class="single-reservation-content-title"> Total Bill </h5>
-                                            <span class="single-reservation-content-price"> $280 </span>
-                                        </div>
-                                        <div class="single-reservation-logoPrice">
-                                            <span class="single-reservation-logoPrice-thumb">
-                                                <img src="assets/img/dashboard/mslogo.png" alt="img">
-                                            </span>
-                                            <span class="single-reservation-logoPrice-code"> ***9520 </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-reservation-item">
-                                    <div class="single-reservation-flex">
-                                        <div class="single-reservation-name">
-                                            <h5 class="single-reservation-name-title"> Beyond Hotel </h5>
-                                            <p class="single-reservation-name-para"> 4140 Parker Rd. Allentown, New
-                                                Mexico 31134 </p>
-                                        </div>
-                                        <div class="single-reservation-btn">
-                                            <a href="javascript:void(0)" class="dash-btn popup-click"> <i
-                                                    class="las la-exclamation-circle"></i> Cancel? </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-reservation bg-white base-padding">
-                            <div class="single-reservation-expandIcon"> <i class="las la-angle-down"></i> </div>
-                            <div class="single-reservation-head">
-                                <div class="single-reservation-flex">
-                                    <div class="single-reservation-content">
-                                        <h5 class="single-reservation-content-title"> Reservation ID </h5>
-                                        <span class="single-reservation-content-id"> #82443454765 </span>
-                                    </div>
-                                    <div class="single-reservation-btn">
-                                        <a href="javascript:void(0)" class="dash-btn btn-pending"> Pending </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-reservation-inner">
-                                <div class="single-reservation-item">
-                                    <div class="single-reservation-name">
-                                        <h5 class="single-reservation-name-title"> Nelson Norman </h5>
-                                        <p class="single-reservation-name-para"> (208) 555-0112 · 8502 Preston Rd.
-                                            Inglewood, Maine 98380
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="single-reservation-item">
-                                    <div class="single-reservation-details">
-                                        <div class="single-reservation-details-item">
-                                            <span class="single-reservation-details-subtitle"> Check in </span>
-                                            <h5 class="single-reservation-details-title"> 10:30 AM, 23 Jun 22 </h5>
-                                        </div>
-                                        <div class="single-reservation-details-item">
-                                            <span class="single-reservation-details-subtitle"> Check Out </span>
-                                            <h5 class="single-reservation-details-title"> 10:30 AM, 28 Jun 22 </h5>
-                                        </div>
-                                        <div class="single-reservation-details-item">
-                                            <span class="single-reservation-details-subtitle"> Guests & Rooms </span>
-                                            <h5 class="single-reservation-details-title"> 4 Adults, 2 Children, 3 Rooms
-                                            </h5>
-                                        </div>
-                                        <div class="single-reservation-details-item">
-                                            <span class="single-reservation-details-subtitle"> Booked </span>
-                                            <h5 class="single-reservation-details-title"> 28 Jun 22 </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-reservation-item">
-                                    <div class="single-reservation-flex">
-                                        <div class="single-reservation-content">
-                                            <h5 class="single-reservation-content-title"> Total Bill </h5>
-                                            <span class="single-reservation-content-price"> $280 </span>
-                                        </div>
-                                        <div class="single-reservation-logoPrice">
-                                            <span class="single-reservation-logoPrice-thumb">
-                                                <img src="assets/img/dashboard/mslogo.png" alt="img">
-                                            </span>
-                                            <span class="single-reservation-logoPrice-code"> ***9520 </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-reservation-item">
-                                    <div class="single-reservation-flex">
-                                        <div class="single-reservation-name">
-                                            <h5 class="single-reservation-name-title"> Beyond Hotel </h5>
-                                            <p class="single-reservation-name-para"> 4140 Parker Rd. Allentown, New
-                                                Mexico 31134 </p>
-                                        </div>
-                                        <div class="single-reservation-btn">
-                                            <a href="javascript:void(0)" class="dash-btn popup-click"> <i
-                                                    class="las la-exclamation-circle"></i> Cancel? </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
