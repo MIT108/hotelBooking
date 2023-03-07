@@ -1,4 +1,6 @@
 <?php
+require("controllers/HotelController.php");
+
 require('includes/includes_header.php');
 require('includes/navBar.php');
 ?>
@@ -257,7 +259,7 @@ require('includes/navBar.php');
                 </div>
             </div>
             <div class="col-lg-6 bg-image banner-right-bg radius-20"
-                style="background-image: url(assets/img/banner/banner.jpg);"></div>
+                style="background-image: url(assets/img/banner/banner.old.jpg);"></div>
         </div>
     </div>
 </div>
@@ -337,76 +339,27 @@ require('includes/navBar.php');
                     data-prevArrow='<div class="prev-icon radius-parcent-50"><i class="las la-angle-left"></i></div>'
                     data-nextArrow='<div class="next-icon radius-parcent-50"><i class="las la-angle-right"></i></div>'
                     data-responsive='[{"breakpoint": 1400,"settings": {"slidesToShow": 4}},{"breakpoint": 1200,"settings": {"slidesToShow": 3}},{"breakpoint": 992,"settings": {"slidesToShow": 3}},{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576, "settings": {"slidesToShow": 1} }]'>
+                    <?php while($row = $hotels->fetch_assoc()){?>
                     <div class="attraction-item">
                         <div class="single-attraction-two radius-20">
-                            <div class="single-attraction-two-thumb">
-                                <a href="assets/img/attraction/a5.jpg" class="gallery-popup"> <img
-                                        src="assets/img/attraction/a5.jpg" alt="img"> </a>
+                            <div class="single-attraction-two-thumb" style="
+                                background-color: lightgray;
+                                width: 310px;
+                                height: 400px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                resize: cover;">
+                                <a href="images/hotels/<?= $row['image'] ?>" class="gallery-popup"> <img
+                                        src="images/hotels/<?= $row['image'] ?>" alt="img"> </a>
                             </div>
                             <div class="single-attraction-two-contents">
-                                <h4 class="single-attraction-two-contents-title"> <a href="roomList.php">
-                                        Eiffel Tower </a> </h4>
-                                <p class="single-attraction-two-contents-para"> We have over 28K reviews to assure
-                                    you top notch service. </p>
+                                <h4 class="single-attraction-two-contents-title"> <a href="roomList.php?hotel_id=<?= $row['id']?>">
+                                        <?= $row['name'] ?> </a> </h4>
                             </div>
                         </div>
                     </div>
-                    <div class="attraction-item">
-                        <div class="single-attraction-two radius-20">
-                            <div class="single-attraction-two-thumb">
-                                <a href="assets/img/attraction/a6.jpg" class="gallery-popup"> <img
-                                        src="assets/img/attraction/a6.jpg" alt="img"> </a>
-                            </div>
-                            <div class="single-attraction-two-contents">
-                                <h4 class="single-attraction-two-contents-title"> <a href="roomList.php">
-                                        Disneyland </a> </h4>
-                                <p class="single-attraction-two-contents-para"> We have over 28K reviews to assure
-                                    you top notch service. </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="attraction-item">
-                        <div class="single-attraction-two radius-20">
-                            <div class="single-attraction-two-thumb">
-                                <a href="assets/img/attraction/a7.jpg" class="gallery-popup"> <img
-                                        src="assets/img/attraction/a7.jpg" alt="img"> </a>
-                            </div>
-                            <div class="single-attraction-two-contents">
-                                <h4 class="single-attraction-two-contents-title"> <a href="roomList.php">
-                                        Palace de justice </a> </h4>
-                                <p class="single-attraction-two-contents-para"> We have over 28K reviews to assure
-                                    you top notch service. </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="attraction-item">
-                        <div class="single-attraction-two radius-20">
-                            <div class="single-attraction-two-thumb">
-                                <a href="assets/img/attraction/a8.jpg" class="gallery-popup"> <img
-                                        src="assets/img/attraction/a8.jpg" alt="img"> </a>
-                            </div>
-                            <div class="single-attraction-two-contents">
-                                <h4 class="single-attraction-two-contents-title"> <a href="roomList.php"> Arc
-                                        de Trimorph </a> </h4>
-                                <p class="single-attraction-two-contents-para"> We have over 28K reviews to assure
-                                    you top notch service. </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="attraction-item">
-                        <div class="single-attraction-two radius-20">
-                            <div class="single-attraction-two-thumb">
-                                <a href="assets/img/attraction/a6.jpg" class="gallery-popup"> <img
-                                        src="assets/img/attraction/a6.jpg" alt="img"> </a>
-                            </div>
-                            <div class="single-attraction-two-contents">
-                                <h4 class="single-attraction-two-contents-title"> <a href="roomList.php">
-                                        Disneyland </a> </h4>
-                                <p class="single-attraction-two-contents-para"> We have over 28K reviews to assure
-                                    you top notch service. </p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php }?>
                 </div>
             </div>
         </div>
@@ -421,7 +374,7 @@ require('includes/navBar.php');
             <div class="section-title-shapes"> </div>
         </div>
         <div class="row g-4 mt-4">
-            <div class="col-xl-8 col-lg-7">
+            <div class="col-xl-12 col-lg-12">
                 <div class="faq-wrapper">
                     <div class="faq-contents">
                         <div class="faq-item wow fadeInLeft" data-wow-delay=".1s">
@@ -477,168 +430,13 @@ require('includes/navBar.php');
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-5">
-                <div class="faq-question faq-question-border radius-10 sticky-top">
-                    <h3 class="faq-question-title"> Still got questions? </h3>
-                    <div class="faq-question-form custom-form mat-20">
-                        <form action="#">
-                            <div class="single-input">
-                                <label class="label-title"> Name </label>
-                                <input type="text" class="form--control radius-10" placeholder="Type Name">
-                            </div>
-                            <div class="single-input">
-                                <label class="label-title"> Email </label>
-                                <input type="text" class="form--control radius-10" placeholder="Type Email">
-                            </div>
-                            <div class="single-input">
-                                <label class="label-title"> Questions </label>
-                                <textarea name="message" class="form--control form-message radius-10"
-                                    placeholder="Type Your Questons..."></textarea>
-                            </div>
-                            <button class="submit-btn w-100 radius-10" type="submit"> Submit </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
-
-
-<section class="blog-area pat-50 pab-50">
-    <div class="container">
-        <div class="section-title center-text">
-            <h2 class="title"> Latest News </h2>
-            <div class="section-title-shapes"> </div>
-        </div>
-        <div class="row gy-4 mt-4">
-            <div class="col-xxl-4 col-lg-4 col-md-6">
-                <div class="single-blog">
-                    <div class="single-blog-thumbs">
-                        <a href="blog_details.html"> <img class="lazyloads" src="assets/img/blog/blog1.jpg" alt="">
-                        </a>
-                        <div class="single-blog-thumbs-date">
-                            <a href="javascript:void(0)"> <span class="date"> 18 </span> <span class="month"> Jun
-                                </span> </a>
-                        </div>
-                    </div>
-                    <div class="single-blog-contents mt-3">
-                        <div class="single-blog-contents-tags mt-3">
-                            <span class="single-blog-contents-tags-item">
-                                <a href="javascript:void(0)"> <i class="las la-tag"></i> Hotel </a>
-                            </span>
-                            <span class="single-blog-contents-tags-item"> <a href="javascript:void(0)"> 22 Comments
-                                </a> </span>
-                        </div>
-                        <h4 class="single-blog-contents-title mt-3"> <a href="blog_details.html"> Great Deals to
-                                Send Your Loved Ones Somewhere Nice </a> </h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-4 col-lg-4 col-md-6">
-                <div class="single-blog">
-                    <div class="single-blog-thumbs">
-                        <a href="blog_details.html"> <img class="lazyloads" src="assets/img/blog/blog2.jpg" alt="">
-                        </a>
-                        <div class="single-blog-thumbs-date">
-                            <a href="javascript:void(0)"> <span class="date"> 19 </span> <span class="month"> Jun
-                                </span> </a>
-                        </div>
-                    </div>
-                    <div class="single-blog-contents mt-3">
-                        <div class="single-blog-contents-tags mt-3">
-                            <span class="single-blog-contents-tags-item">
-                                <a href="javascript:void(0)"> <i class="las la-tag"></i> Hotel </a>
-                            </span>
-                            <span class="single-blog-contents-tags-item"> <a href="javascript:void(0)"> 25 Comments
-                                </a> </span>
-                        </div>
-                        <h4 class="single-blog-contents-title mt-3"> <a href="blog_details.html"> Read Real Guest
-                                Reviews. 24/7 Customer Service and others. </a> </h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-4 col-lg-4 col-md-6">
-                <div class="single-blog">
-                    <div class="single-blog-thumbs">
-                        <a href="blog_details.html"> <img class="lazyloads" src="assets/img/blog/blog3.jpg" alt="">
-                        </a>
-                        <div class="single-blog-thumbs-date">
-                            <a href="javascript:void(0)"> <span class="date"> 20 </span> <span class="month"> Jun
-                                </span> </a>
-                        </div>
-                    </div>
-                    <div class="single-blog-contents mt-3">
-                        <div class="single-blog-contents-tags mt-3">
-                            <span class="single-blog-contents-tags-item">
-                                <a href="javascript:void(0)"> <i class="las la-tag"></i> Hotel </a>
-                            </span>
-                            <span class="single-blog-contents-tags-item"> <a href="javascript:void(0)"> 12 Comments
-                                </a> </span>
-                        </div>
-                        <h4 class="single-blog-contents-title mt-3"> <a href="blog_details.html"> Compare hotel
-                                prices and find an amazing price for the Resort </a> </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<div class="brand-area pat-50 pab-50">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="global-slick-init attraction-slider slider-inner-margin" data-slidesToShow="6"
-                    data-infinite="true" data-arrows="false" data-dots="false" data-swipeToSlide="true"
-                    data-autoplay="true" data-autoplaySpeed="2500"
-                    data-prevArrow='<div class="prev-icon"><i class="las la-angle-left"></i></div>'
-                    data-nextArrow='<div class="next-icon"><i class="las la-angle-right"></i></div>'
-                    data-responsive='[{"breakpoint": 1400,"settings": {"slidesToShow": 5}},{"breakpoint": 1200,"settings": {"slidesToShow": 4}},{"breakpoint": 992,"settings": {"slidesToShow": 3}},{"breakpoint": 576, "settings": {"slidesToShow": 2} }]'>
-                    <div class="single-brand">
-                        <a href="javascript:void(0)" class="single-brand-thumb">
-                            <img src="assets/img/single-page/logo1.png" alt="brandLogo">
-                        </a>
-                    </div>
-                    <div class="single-brand">
-                        <a href="javascript:void(0)" class="single-brand-thumb">
-                            <img src="assets/img/single-page/logo2.png" alt="brandLogo">
-                        </a>
-                    </div>
-                    <div class="single-brand">
-                        <a href="javascript:void(0)" class="single-brand-thumb">
-                            <img src="assets/img/single-page/logo3.png" alt="brandLogo">
-                        </a>
-                    </div>
-                    <div class="single-brand">
-                        <a href="javascript:void(0)" class="single-brand-thumb">
-                            <img src="assets/img/single-page/logo4.png" alt="brandLogo">
-                        </a>
-                    </div>
-                    <div class="single-brand">
-                        <a href="javascript:void(0)" class="single-brand-thumb">
-                            <img src="assets/img/single-page/logo5.png" alt="brandLogo">
-                        </a>
-                    </div>
-                    <div class="single-brand">
-                        <a href="javascript:void(0)" class="single-brand-thumb">
-                            <img src="assets/img/single-page/logo6.png" alt="brandLogo">
-                        </a>
-                    </div>
-                    <div class="single-brand">
-                        <a href="javascript:void(0)" class="single-brand-thumb">
-                            <img src="assets/img/single-page/logo3.png" alt="brandLogo">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <?php
+require('includes/patners.php');
+
 require('includes/footer.php');
 require('includes/includes_footer.php');
 ?>

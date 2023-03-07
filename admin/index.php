@@ -9,6 +9,9 @@ require("includes/navBar.php");
         <div class="page-heading">
             <h3>Profile Statistics</h3>
         </div>
+        <?php 
+        require("includes/alert.php");
+    ?>
         <div class="page-content">
             <section class="row">
                 <div class="col-12 col-lg-9">

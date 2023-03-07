@@ -1,4 +1,39 @@
 <?php
+
+session_start();
+
+$dbName = "hotel";
+$host = "localhost";
+$password = "";
+$name = "root";
+
+$conn = mysqli_connect($host, $name, $password, $dbName);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+
+if(isset($_POST['login'])){
+    $emailQuery = "SELECT * FROM customers WHERE email = '" . $_POST['email'] . "'";
+    $emailResult = $conn->query($emailQuery);
+    if ($emailResult->num_rows > 0) {
+        $account = false;
+        while($row = $emailResult->fetch_assoc()) {
+            if (md5($_POST['password']) === $row['password']) {
+                $_SESSION['authCustomer'] = $row;
+                $account = true;
+                header("Location: index.php");
+            }
+        } 
+        if(!$account){
+            $_SESSION['error'] = "Account do not exist";
+        }
+    } else {
+        $_SESSION['error'] = "Account do not exist";
+    }
+}
+
 require('includes/includes_header.php');
 ?>
 
@@ -13,20 +48,21 @@ require('includes/includes_header.php');
                     <div class="login-wrapper-contents login-padding">
                         <h2 class="single-title"> Welcome! </h2>
                         <p class="sigle-para mt-2"> Login to Continue </p>
-                        <form class="login-wrapper-contents-form custom-form" action="#">
+                        <form class="login-wrapper-contents-form custom-form" action="" method="post" >
                             <div class="single-input mt-4">
-                                <label class="label-title mb-3"> Email Or User Name </label>
-                                <input class="form--control" type="text" placeholder="Email Or User Name">
+                                <label class="label-title mb-3"> Email </label>
+                                <input class="form--control" type="email" name="email" required
+                                    placeholder="Email">
                             </div>
                             <div class="single-input mt-4">
                                 <label class="label-title mb-3"> Password </label>
-                                <input class="form--control" type="password" placeholder="Type Password">
+                                <input class="form--control" type="password" name="password" required placeholder="Type Password">
                                 <div class="icon toggle-password">
                                     <div class="show-icon"> <i class="las la-eye-slash"></i> </div>
                                     <span class="hide-icon"> <i class="las la-eye"></i> </span>
                                 </div>
                             </div>
-                            <button class="submit-btn w-100 mt-4" type="submit"> Sign In Now </button>
+                            <button class="submit-btn w-100 mt-4" name="login" type="submit"> Sign In Now </button>
                             <span class="account color-light mt-3"> Don't have an account? <a class="color-one"
                                     href="signup.php"> SignUp Now </a> </span>
                         </form>

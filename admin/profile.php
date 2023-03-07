@@ -14,6 +14,9 @@ require("includes/navBar.php");
             </div>
         </div>
     </div>
+    <?php 
+        require("includes/alert.php");
+    ?>
 
     <!-- Basic Horizontal form layout section start -->
     <section id="basic-horizontal-layouts">
@@ -51,6 +54,12 @@ require("includes/navBar.php");
                                         </div>
                                         <div class="col-md-4 form-group">
                                             <?= $User['city'] ?>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <label>Stars</label>
+                                        </div>
+                                        <div class="col-md-4 form-group">
+                                            <?= $User['star'] ?>
                                         </div>
                                     </div>
                                 </div>
@@ -92,10 +101,20 @@ require("includes/navBar.php");
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
                                             <label for="country-floating">Contact</label>
-                                            <input type="text" id="country-floating" class="form-control" value="<?= $User['contact'] ?>" required
-                                                name="contact" placeholder="Contact" />
+                                            <input type="text" id="country-floating" class="form-control"
+                                                value="<?= $User['contact'] ?>" required name="contact"
+                                                placeholder="Contact" />
                                         </div>
                                     </div>
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-group">
+                                            <label for="country-floating">Stars</label>
+                                            <input type="number" id="country-floating" class="form-control"
+                                                value="<?= $User['star'] ?>" required name="star" max="5"
+                                                placeholder="Stars" />
+                                        </div>
+                                    </div>
+                                    <input name="id" value="<?= $User['id'] ?>" hidden />
                                     <div class="col-12 d-flex justify-content-end">
                                         <button type="submit" class="btn btn-primary me-1 mb-1" name="updateProfile" >
                                             Update

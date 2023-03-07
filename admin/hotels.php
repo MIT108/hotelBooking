@@ -43,6 +43,10 @@ require("includes/navBar.php");
                     <div class="form-group">
                         <input type="number" placeholder="Contact" name="contact" class="form-control" required />
                     </div>
+                    <label>Stars *: </label>
+                    <div class="form-group">
+                        <input type="number" placeholder="Stars" name="star" max="5" class="form-control" required />
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
@@ -60,6 +64,9 @@ require("includes/navBar.php");
     </div>
 </div>
 
+<?php 
+        require("includes/alert.php");
+    ?>
 
 <div class="page-heading">
     <section class="section">
@@ -80,6 +87,7 @@ require("includes/navBar.php");
                             <th>Email</th>
                             <th>Phone</th>
                             <th>City</th>
+                            <th>Stars</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -93,6 +101,7 @@ require("includes/navBar.php");
                             <td><?= $row['email'] ?></td>
                             <td><?= $row['contact'] ?></td>
                             <td><?= $row['city'] ?></td>
+                            <td><?= $row['star'] ?></td>
                             <td>
                                 <?php if($row['status'] == 'active'){ ?><span
                                     class="badge bg-success">Active</span><?php }else{ ?> <span
@@ -112,6 +121,11 @@ require("includes/navBar.php");
                                 &nbsp;
                                 <a href="?delete=<?=$id?>">
                                     <i class="bi bi-trash text-danger"></i>
+                                </a>
+                                &nbsp;
+                                &nbsp;
+                                <a href="viewHotel.php?id=<?=$id?>">
+                                    <i class="bi bi-eye"></i>
                                 </a>
                             </td>
                         </tr>

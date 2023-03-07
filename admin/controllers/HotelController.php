@@ -19,9 +19,10 @@ if(isset($_POST['add_hotel'])){
             $name = $_POST['name'];
             $contact = $_POST['contact'];
             $city = $_POST['city'];
+            $star = $_POST['star'];
             if(sendMail($_POST['name'], $_POST['email'], "Account Created", $body)){
-                $sql = "INSERT INTO users (name, email, contact, password, type, image, status, city) VALUES ('$name',
-                '$email', '$contact', '$password', 'hotel', '$image', 'active', '$city' )";
+                $sql = "INSERT INTO users (name, email, contact, password, type, image, status, city, star) VALUES ('$name',
+                '$email', '$contact', '$password', 'hotel', '$image', 'active', '$city', '$star' )";
                 if (mysqli_query($conn, $sql)) {
                     $_SESSION['success'] = "Hotel Registered successfully";
                 } else {
@@ -36,7 +37,9 @@ if(isset($_POST['add_hotel'])){
     } else {
         $_SESSION['error'] = "Email Already exist";
     }
-    header("Location: hotels.php");
+    echo "<script>
+        window.location.replace('hotels.php');
+    </script>";
 }
 
 if(isset($_GET['changeStatus'])){
@@ -49,7 +52,9 @@ if(isset($_GET['changeStatus'])){
     } else {
         $_SESSION['error'] = "Error updating record: " . $conn->error;
     }
-    header("Location: hotels.php");
+    echo "<script>
+        window.location.replace('hotels.php');
+    </script>";
 }
 if(isset($_GET['delete'])){
     $id = $_GET['delete'];
@@ -60,7 +65,8 @@ if(isset($_GET['delete'])){
     } else {
         $_SESSION['error'] = "Error deleting hotel: " . $conn->error;
     }
-    header("Location: hotels.php");
+    echo "<script>
+        window.location.replace('hotels.php');
+    </script>";
 }
-
 ?>
