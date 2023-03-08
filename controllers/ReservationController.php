@@ -54,8 +54,6 @@ if(isset($_GET['id'])){
 }
 
 if(isset($_POST['checkout'])){
-    var_dump($_POST);
-    die();
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $phone = $_POST['phone'];
@@ -72,7 +70,23 @@ if(isset($_POST['checkout'])){
     $customer_id = $_POST['customer_id'];
     $hotel_id = $_POST['hotel_id'];
     $room_id = $_POST['room_id'];
+    $reservation_id = $_POST['reservation_id'];
 
+    $sql = "INSERT INTO checkouts (fname, lname, phone, address, email, country, city, zip, payment_method, payment_number,
+    charge, discount, payed_amount, customer_id, hotel_id, room_id, reservation_id) VALUES('$fname', '$lname', '$phone', '$address', '$email', 
+    '$country', '$city', '$zip', '$payment_method', '$payment_number', '$charge', '$discount', '$payed_amount', $customer_id, $hotel_id, $room_id, $reservation_id)";
+
+    if (mysqli_query($conn, $sql)) {
+        $sql = "UPDATE reservations SET status='completed' WHERE id=$reservation_id";
+
+        if ($conn->query($sql) === TRUE) {
+            $_SESSION['success'] = "Status updated";
+        } else {
+            $_SESSION['error'] = "Error updating record: " . $conn->error;
+        }
+    } else {
+    $_SESSION['error'] = "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
 }
 
 ?>

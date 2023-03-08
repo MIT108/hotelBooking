@@ -185,7 +185,12 @@ echo "<script>
 
                                         <input name="customer_id" value="<?= $reservationCheckout['reservation']['customer_id'] ?>" required hidden />
                                         <input name="hotel_id" value="<?= $reservationCheckout['reservation']['hotel_id'] ?>" required hidden />
-                                        <input name="room_id" value="<?= $reservationCheckout['reservation']['room_id'] ?>" required hidden />
+                                        <input name="reservation_id"
+                                            value="<?= $reservationCheckout['reservation']['id'] ?>" required
+                                            hidden />
+                                        <input name="room_id"
+                                            value="<?= $reservationCheckout['reservation']['room_id'] ?>" required
+                                            hidden />
 
                                     </ul>
                                 </div>
