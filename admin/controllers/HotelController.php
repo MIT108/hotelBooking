@@ -4,6 +4,7 @@ require("functions.php");
 
 $hotelsQuery = "SELECT * FROM users WHERE type= 'hotel'";
 $hotels = $conn->query($hotelsQuery);
+$message = "";
 
 if(isset($_POST['add_hotel'])){
     $emailQuery = "SELECT * FROM users WHERE email = '" . $_POST['email'] . "'";
@@ -24,20 +25,21 @@ if(isset($_POST['add_hotel'])){
                 $sql = "INSERT INTO users (name, email, contact, password, type, image, status, city, star) VALUES ('$name',
                 '$email', '$contact', '$password', 'hotel', '$image', 'active', '$city', '$star' )";
                 if (mysqli_query($conn, $sql)) {
-                    $_SESSION['success'] = "Hotel Registered successfully";
+                    $message = "Hotel Registered successfully";
                 } else {
-                    $_SESSION['error'] = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    $message = "Error: " . $sql . "<br>" . mysqli_error($conn);
                 }
             }else{
-                $_SESSION['error'] = "Connection Error";
+                $message = "Connection Error";
             }
         }else{
-            $_SESSION['error'] = $response["message"];
+            $message = $response["message"];
         }
     } else {
-        $_SESSION['error'] = "Email Already exist";
+        $message = "Email Already exist";
     }
     echo "<script>
+        alert('$message')
         window.location.replace('hotels.php');
     </script>";
 }
@@ -48,11 +50,12 @@ if(isset($_GET['changeStatus'])){
     $sql = "UPDATE users SET status='$status' WHERE id=$id";
 
     if ($conn->query($sql) === TRUE) {
-        $_SESSION['success'] = "Status updated";
+        $message = "Status updated";
     } else {
-        $_SESSION['error'] = "Error updating record: " . $conn->error;
+        $message = "Error updating record: " . $conn->error;
     }
     echo "<script>
+        alert('$message')
         window.location.replace('hotels.php');
     </script>";
 }
@@ -61,11 +64,12 @@ if(isset($_GET['delete'])){
     $sql = "DELETE FROM users WHERE id=$id";
 
     if ($conn->query($sql) === TRUE) {
-        $_SESSION['success'] = "Hotel Deleted";
+        $message = "Hotel Deleted";
     } else {
-        $_SESSION['error'] = "Error deleting hotel: " . $conn->error;
+        $message = "Error deleting hotel: " . $conn->error;
     }
     echo "<script>
+        alert('$message')
         window.location.replace('hotels.php');
     </script>";
 }
