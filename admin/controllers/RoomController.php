@@ -15,8 +15,9 @@ if(isset($_GET['id'])){
         </script>";
     }
 }
+$hotel_id = $User['id'];
 
-$roomsQuery = "SELECT * FROM rooms";
+$roomsQuery = "SELECT * FROM rooms WHERE hotel_id = $hotel_id";
 $rooms = $conn->query($roomsQuery);
 
 if (isset($_POST['add_room'])) {
