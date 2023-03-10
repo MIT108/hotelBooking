@@ -22,7 +22,12 @@
                     <li><a href="about.php"> About </a></li>
                     <li><a href="contact.php"> Contact Us </a></li>
                     <li><a href="#"> Blog </a></li>
+                    <?php 
+                    if(isset($_SESSION['authCustomer'])){?>
                     <li><a href="dashboard.php"> Dashboard </a></li>
+
+                    <?php }
+                    ?>
                 </ul>
             </div>
             <?php
