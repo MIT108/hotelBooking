@@ -65,7 +65,7 @@ if (isset($_POST['add_room'])) {
     }
     $rating = $_POST['rating'];
     $review = $_POST['review'];
-    $nameQuery = "SELECT * FROM rooms WHERE name = '$name'";
+    $nameQuery = "SELECT * FROM rooms WHERE name = '$name' AND hotel_id = $hotel_id";
     $nameResult = $conn->query($nameQuery);
     if ($nameResult->num_rows === 0) {
         $response1 = uploadFile("../images/rooms/", $_FILES['image1']);
