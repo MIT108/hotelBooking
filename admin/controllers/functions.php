@@ -65,7 +65,7 @@ function uploadFile($target_dir, $file){
     $response = [];
 
     $time = strtotime("now");
-    $name = $time . basename($file["name"]);
+    $name = randomString(16) . basename($file["name"]);
     $target_file = $target_dir .$name;
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

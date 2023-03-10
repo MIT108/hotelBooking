@@ -68,9 +68,9 @@ if (isset($_POST['add_room'])) {
     $nameQuery = "SELECT * FROM rooms WHERE name = '$name'";
     $nameResult = $conn->query($nameQuery);
     if ($nameResult->num_rows === 0) {
-        $response1 = uploadFile("../images/rooms/1", $_FILES['image1']);
-        $response2 = uploadFile("../images/rooms/2", $_FILES['image2']);
-        $response3 = uploadFile("../images/rooms/3", $_FILES['image3']);
+        $response1 = uploadFile("../images/rooms/", $_FILES['image1']);
+        $response2 = uploadFile("../images/rooms/", $_FILES['image2']);
+        $response3 = uploadFile("../images/rooms/", $_FILES['image3']);
         if($response1["status"] && $response2["status"] && $response3["status"]){
             $image1 = $response1['message'];
             $image2 = $response2['message'];
