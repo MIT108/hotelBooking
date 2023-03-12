@@ -2,6 +2,14 @@
 require "connection.php";
 require "functions.php";
 
+
+if (!isset($_SESSION['authCustomer'])) {
+    echo "<script>
+        alert('Login before reserving');
+        window.location.replace('login.php');
+    </script>";
+}
+
 $room = null;
 $id = $Customer['id'];
 $reservationsQuery = "SELECT * FROM reservations WHERE customer_id = $id AND status != 'pending'";
@@ -60,12 +68,6 @@ if(isset($_GET['changeStatus'])){
     </script>";
 }
 
-if (!isset($_SESSION['authCustomer'])) {
-    echo "<script>
-        alert('Login before reserving');
-        window.location.replace('login.php');
-    </script>";
-}
 
 if (isset($_POST['make_reservation'])) {
     $check_in = $_POST['check_in'];
