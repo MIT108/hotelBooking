@@ -18,6 +18,7 @@ if (!$conn) {
 if(isset($_POST['login'])){
     $emailQuery = "SELECT * FROM users WHERE email = '" . $_POST['email'] . "'";
     $emailResult = $conn->query($emailQuery);
+    $message = "";
     if ($emailResult->num_rows > 0) {
         $account = false;
         while($row = $emailResult->fetch_assoc()) {
@@ -28,11 +29,14 @@ if(isset($_POST['login'])){
             }
         } 
         if(!$account){
-            $_SESSION['error'] = "Account do not exist";
+            $message = "Account do not exist";
         }
     } else {
-        $_SESSION['error'] = "Account do not exist";
+        $message = "Account do not exist";
     }
+    echo "<script>
+        alert('$message'); 
+    </script>";  
 }
 
 ?>

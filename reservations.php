@@ -1,8 +1,8 @@
 <?php
-require("controllers/DashboardController.php");
+require "controllers/ReservationController.php";
 
-require('includes/includes_header.php');
-require('includes/navBar.php');
+require 'includes/includes_header.php';
+require 'includes/navBar.php';
 ?>
 
     <div class="breadcrumb-area breadcrumb-padding">
@@ -32,67 +32,13 @@ require('includes/navBar.php');
                         <i class="las la-bars"></i>
                     </div>
                 </div>
-                <?php 
-                require("includes/dashboardSidebar.php")
-                ?>
+                <?php
+                    require "includes/dashboardSidebar.php"
+                    ?>
                 <div class="dashboard-right-contents mt-4 mt-lg-0">
-                    <div class="dashboard-promo">
-                        <div class="row gy-4 justify-content-center">
-                            <div class="col-xxl-3 col-xl-4 col-sm-6 orders-child">
-                                <div class="single-order">
-                                    <div class="single-order-flex">
-                                        <div class="single-order-contents">
-                                            <span class="single-order-contents-subtitle"> Pending Reservation </span>
-                                            <h2 class="single-order-contents-title"> 02 </h2>
-                                        </div>
-                                        <div class="single-order-icon">
-                                            <i class="las la-history"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xxl-3 col-xl-4 col-sm-6 orders-child">
-                                <div class="single-order">
-                                    <div class="single-order-flex">
-                                        <div class="single-order-contents">
-                                            <span class="single-order-contents-subtitle"> Accepted Reservation </span>
-                                            <h2 class="single-order-contents-title"> 32 </h2>
-                                        </div>
-                                        <div class="single-order-icon">
-                                            <i class="las la-check-circle"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xxl-3 col-xl-4 col-sm-6 orders-child">
-                                <div class="single-order">
-                                    <div class="single-order-flex">
-                                        <div class="single-order-contents">
-                                            <span class="single-order-contents-subtitle"> Cancelled Reservation </span>
-                                            <h2 class="single-order-contents-title"> 08 </h2>
-                                        </div>
-                                        <div class="single-order-icon">
-                                            <i class="las la-times-circle"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xxl-3 col-xl-4 col-sm-6 orders-child">
-                                <div class="single-order">
-                                    <div class="single-order-contents">
-                                        <span class="single-order-contents-subtitle"> Completed Reservation </span>
-                                        <h2 class="single-order-contents-title">38 </h2>
-                                    </div>
-                                    <div class="single-order-icon">
-                                        <i class="las la-clipboard-check"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="dashboard-reservation">
-                        <?php foreach ($reservations as $reservation) { ?>
-                            <div class="single-reservation bg-white base-padding">
+                        <?php foreach ($reservations as $reservation) {?>
+                        <div class="single-reservation bg-white base-padding">
                             <div class="single-reservation-expandIcon"> <i class="las la-angle-down"></i> </div>
                             <div class="single-reservation-head">
                                 <div class="single-reservation-flex">
@@ -195,7 +141,7 @@ require('includes/navBar.php');
                                 </div>
                             </div>
                         </div>
-                        <?php } ?>
+                        <?php }?>
                     </div>
                 </div>
             </div>
@@ -204,6 +150,6 @@ require('includes/navBar.php');
 
 <?php
 
-require('includes/footer.php');
-require('includes/includes_footer.php');
+require 'includes/footer.php';
+require 'includes/includes_footer.php';
 ?>

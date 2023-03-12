@@ -14,4 +14,11 @@ if (!$conn) {
         $Customer = $_SESSION['authCustomer'];
     }
 }
+if (isset($_GET['logout'])) {
+    unset($_SESSION['authCustomer']);
+    echo "<script>
+        alert('Log out successful');
+            window.location.replace('index.php');
+        </script>";
+}
 ?>

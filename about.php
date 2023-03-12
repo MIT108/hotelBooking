@@ -1,4 +1,6 @@
 <?php
+require "controllers/DashboardController.php";
+
 require('includes/includes_header.php');
 require('includes/navBar.php');
 ?>

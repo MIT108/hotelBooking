@@ -1,8 +1,8 @@
 <?php
-require "controllers/ReservationController.php";
+require("controllers/ReservationController.php");
 
-require "includes/includes_header.php";
-require "includes/navBar.php";
+require("includes/includes_header.php");
+require("includes/navBar.php");
 
 ?>
 <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css" />
@@ -30,41 +30,41 @@ require "includes/navBar.php";
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($reservations as $reservation) {?>
+                        <?php foreach ($pendingReservations as $reservation) { ?>
                         <tr>
-                            <td><?=$reservation['reservation']['id']?></td>
-                            <td>
-                                <a href="viewRoom.php?id=<?=$reservation['room']['id']?>"><?=$reservation['room']['name']?></a>
+                            <td><?= $reservation['reservation']['id'] ?></td>
+                            <td> 
+                                <a href="viewRoom.php?id=<?= $reservation['room']['id'] ?>"><?= $reservation['room']['name'] ?></a>
                             </td>
-                            <td><?=$reservation['customer']['fname'] . " " . $reservation['customer']['lname']?></td>
-                            <td><?=$reservation['reservation']['check_in']?></td>
-                            <td><?=$reservation['reservation']['num_people']?></td>
-                            <td><?=$reservation['reservation']['num_room']?></td>
-                            <td><?=$reservation['room']['price']?> FCFA</td>
-                            <td><?=$reservation['room']['price'] * $reservation['reservation']['num_room'] *
-    $reservation['reservation']['num_night']?> FCFA</td>
+                            <td><?= $reservation['customer']['fname']." ".$reservation['customer']['lname'] ?></td>
+                            <td><?= $reservation['reservation']['check_in'] ?></td>
+                            <td><?= $reservation['reservation']['num_people'] ?></td>
+                            <td><?= $reservation['reservation']['num_room'] ?></td>
+                            <td><?= $reservation['room']['price'] ?> FCFA</td>
+                            <td><?= $reservation['room']['price'] * $reservation['reservation']['num_room'] *
+                                $reservation['reservation']['num_night'] ?> FCFA</td>
                             <td>
-                                <?php if ($reservation['reservation']['status'] == 'pending') {?>
+                                <?php if($reservation['reservation']['status'] == 'pending'){ ?>
                                 <span class="badge bg-warning">Pending</span>
-                                <?php } else if ($reservation['reservation']['status'] == 'accepted') {?>
+                                <?php }else if($reservation['reservation']['status'] == 'accepted'){ ?>
                                 <span class="badge bg-info">Accepted</span>
-                                <?php } else if ($reservation['reservation']['status'] == 'cancelled') {?>
+                                <?php } else if ($reservation['reservation']['status'] == 'cancelled'){?>
                                 <span class="badge bg-danger">Cancelled</span>
-                                <?php } else if ($reservation['reservation']['status'] == 'completed') {?>
+                                <?php }else if ($reservation['reservation']['status'] == 'completed'){?>
                                 <span class="badge bg-success">Completed</span>
-                                <?php }?>
+                                <?php } ?>
                             </td>
                             <td>
-                            <?php if ($reservation['reservation']['status'] == 'completed') {?>
-                                <?php if ($reservation['reservation']['status'] == 'completed' && $reservation['reservation']['freeRoom'] == 0) {?>
-
-                                <a href="?freeRoom=<?=$reservation['room']['id']?>&reservation=<?=$reservation['reservation']['id'] ?>">
+                                <a href="?changeStatus=<?=$reservation['reservation']['id']?>&status=accepted">
                                     <i class="bi bi-check text-success"></i>
                                 </a>
                                 &nbsp;
                                 &nbsp;
-                                <?php } ?>
-                                <?php }?>
+                                <a href="?changeStatus=<?=$reservation['reservation']['id']?>&status=cancelled">
+                                    <i class="bi bi-trash text-danger"></i>
+                                </a>
+                                &nbsp;
+                                &nbsp;
                                 <a href="viewRoom.php?id=<?=$reservation['reservation']['id']?>">
                                     <i class="bi bi-eye"></i>
                                 </a>
@@ -81,7 +81,7 @@ require "includes/navBar.php";
 
 
 <?php
-require "includes/footer.php";
+require("includes/footer.php");
 ?>
 <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
 <script src="assets/js/pages/simple-datatables.js"></script>

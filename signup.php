@@ -13,6 +13,7 @@ if (!$conn) {
 
 require('includes/includes_header.php');
 require('controllers/functions.php');
+$message = "";
 
 if(isset($_POST['register'])){
     $fname = $_POST['fname'];
@@ -33,29 +34,38 @@ if(isset($_POST['register'])){
                 $password = md5($password);
                 $body = "<h1>Account Created Successfully at booking</h1><b>To login click here:
                     http://localhost/hotel/login.php</b>";
-                if(sendMail($fname." ".$lname, $email, "Account Created", $body)){
+                // if(sendMail($fname." ".$lname, $email, "Account Created", $body)){
+                if(true){
                     $sql = "INSERT INTO customers (fname, lname, username, email, phone, password, status, image) VALUES ('$fname',
                     '$lname',
                     '$username', '$email', '$phone', '$password', 'active', '$image' )";
                     if (mysqli_query($conn, $sql)) {
-                        $_SESSION['success'] = "Account Registered successfully";
+                        $message = "Account Registered successfully";
+
+                        echo "<script>
+                            alert('$message'); 
+                        </script>"; 
                         header("Location: login.php");
                     } else {
-                        $_SESSION['error'] = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                        $message = "Error: " . $sql . "<br>" . mysqli_error($conn);
                     }
                 }else{
-                    $_SESSION['error'] = "Connection Error";
+                    $message = "Connection Error";
                 }
+
             }else{
-                $_SESSION['error'] = $response["message"];
+                $message = $response["message"];
             }
         }else{
-            $_SESSION['error'] = "This email already exist";
+            $message = "This email already exist";
         }
     }else{
-        $_SESSION['error'] = "The 2 password doesn't match";
+        $message = "The 2 password doesn't match";
     }
 
+    echo "<script>
+        alert('$message'); 
+    </script>"; 
 }
 
 ?>
@@ -79,14 +89,14 @@ if(isset($_POST['register'])){
                     </div>
                     <?php
                             unset($_SESSION['success']);
-                        } else if (isset($_SESSION['error'])) {
+                        } else if (isset($message)) {
                         ?>
                     <div class="alert alert-danger alert-dismissible show fade">
-                        <?= $_SESSION['error'] ?>
+                        <?= $message ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     <?php
-                            unset($_SESSION['error']);
+                            unset($message);
                         } ?>
                     <form class="login-wrapper-form custom-form padding-top-20" action="" enctype="multipart/form-data"
                         method="post">

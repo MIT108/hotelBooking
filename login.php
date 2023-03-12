@@ -13,6 +13,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+$message = "";
 
 if(isset($_POST['login'])){
     $emailQuery = "SELECT * FROM customers WHERE email = '" . $_POST['email'] . "'";
@@ -27,11 +28,15 @@ if(isset($_POST['login'])){
             }
         } 
         if(!$account){
-            $_SESSION['error'] = "Account do not exist";
+            $message = "Account do not exist";
         }
     } else {
-        $_SESSION['error'] = "Account do not exist";
+        $message = "Account do not exist";
     }
+    
+    echo "<script>
+        alert('$message'); 
+    </script>"; 
 }
 
 require('includes/includes_header.php');

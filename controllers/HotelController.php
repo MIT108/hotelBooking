@@ -5,11 +5,14 @@ require("functions.php");
 $hotelsQuery = "SELECT * FROM users WHERE type= 'hotel'";
 $hotels = $conn->query($hotelsQuery);
 
+$faqsQuery = "SELECT * FROM faqs";
+$faqs = $conn->query($faqsQuery);
+
 $rooms = null;
 
 if(isset($_GET['hotel_id'])){
     $hotel_id = $_GET['hotel_id'];
-    $roomsQuery = "SELECT * FROM rooms WHERE hotel_id = $hotel_id";
+    $roomsQuery = "SELECT * FROM rooms WHERE hotel_id = $hotel_id AND status = 'active'";
     $rooms = $conn->query($roomsQuery);
     
 }

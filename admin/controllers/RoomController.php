@@ -3,6 +3,8 @@ require("connection.php");
 require("functions.php");
 
 $room = null;
+$message = "";
+
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];
@@ -79,16 +81,21 @@ if (isset($_POST['add_room'])) {
             VALUES ($hotel_id, '$name', '$location', '$price', '$num_beds', '$num_persons', '$about', $parking, $wifi, $breakfast,
             $room_service, $pool, $reception, $gym, $rating, $review, 'active', '$image1', '$image2', '$image3')";
             if (mysqli_query($conn, $sql)) {
-                $_SESSION['success'] = "Room Registered successfully";
+                $message = "Room Registered successfully";
             } else {
-                $_SESSION['error'] = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                $message = "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
         }else{
-            $_SESSION['error'] = "Error while uploading images";
+            $message = "Error while uploading images";
         }
     } else {
-        $_SESSION['error'] = "Room name already exist";
+        $message = "Room name already exist";
     }
+    
+    echo "<script>
+        alert('$messge');
+        window.location.replace('rooms.php');
+        </script>";
 
 }
 if(isset($_POST['change_image1'])){
@@ -99,12 +106,13 @@ if(isset($_POST['change_image1'])){
         $sql = "UPDATE rooms SET image1='$image' WHERE id=$room_id";
 
         if ($conn->query($sql) === TRUE) {
-            $_SESSION['success'] = "Image updated";
+            $message = "Image updated";
         } else {
-            $_SESSION['error'] = "Error updating record: " . $conn->error;
+            $message = "Error updating record: " . $conn->error;
         }
         echo "<script>
-            window.location.replace('viewRoom.php?id=$room_id');
+        alert('$messge');
+        window.location.replace('viewRoom.php?id=$room_id');
         </script>";
     }
 }
@@ -116,12 +124,13 @@ if(isset($_POST['change_image2'])){
         $sql = "UPDATE rooms SET image2='$image' WHERE id=$room_id";
 
         if ($conn->query($sql) === TRUE) {
-            $_SESSION['success'] = "Image updated";
+            $message = "Image updated";
         } else {
-            $_SESSION['error'] = "Error updating record: " . $conn->error;
+            $message = "Error updating record: " . $conn->error;
         }
         echo "<script>
-            window.location.replace('viewRoom.php?id=$room_id');
+        alert('$messge');
+        window.location.replace('viewRoom.php?id=$room_id');
         </script>";
     }
 
@@ -134,12 +143,13 @@ if(isset($_POST['change_image3'])){
         $sql = "UPDATE rooms SET image3='$image' WHERE id=$room_id";
 
         if ($conn->query($sql) === TRUE) {
-            $_SESSION['success'] = "Image updated";
+            $message = "Image updated";
         } else {
-            $_SESSION['error'] = "Error updating record: " . $conn->error;
+            $message = "Error updating record: " . $conn->error;
         }
         echo "<script>
-            window.location.replace('viewRoom.php?id=$room_id');
+        alert('$messge');
+        window.location.replace('viewRoom.php?id=$room_id');
         </script>";
     }
 }
@@ -196,12 +206,13 @@ if(isset($_POST['update_room'])){
     room_service=$room_service, pool=$pool, reception=$reception, gym=$gym, rating=$rating, review=$review WHERE
     id=$id";
     if ($conn->query($sql) === TRUE) {
-        $_SESSION['success'] = "Room updated";
+        $message = "Room updated";
     } else {
-        $_SESSION['error'] = "Error updating record: " . $conn->error;
+        $message = "Error updating record: " . $conn->error;
     }
 
     echo "<script>
+        alert('$messge');
         window.location.replace('viewRoom.php?id=$room_id');
     </script>";
 }

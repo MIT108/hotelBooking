@@ -1,4 +1,6 @@
 <?php
+require "controllers/DashboardController.php";
+
 require('includes/includes_header.php');
 require('includes/navBar.php');
 ?>
@@ -34,26 +36,26 @@ require('includes/navBar.php');
                         <h4 class="contact-contents-title"> Get in touch </h4>
                         <p class="contact-contents-para mt-2"> Our friendly team would love to hear from you. </p>
                         <div class="contact-contents-form custom-form">
-                            <form action="#">
+                            <form action="" method="POST" >
                                 <div class="single-flex-input mt-4">
                                     <div class="single-input mt-4">
-                                        <input type="text" class="form--control radius-5" placeholder="First Name">
+                                        <input type="text" class="form--control radius-5" name="fname" required placeholder="First Name">
                                     </div>
                                     <div class="single-input mt-4">
-                                        <input type="text" class="form--control radius-5" placeholder="Last Name">
+                                        <input type="text" class="form--control radius-5" name="lname" required placeholder="Last Name">
                                     </div>
                                 </div>
                                 <div class="single-input mt-4">
-                                    <input type="text" class="form--control radius-5" placeholder="Type Email">
+                                    <input type="email" class="form--control radius-5" name="email" required placeholder="Type Email">
                                 </div>
                                 <div class="single-input mt-4">
-                                    <input type="tel" class="form--control radius-5" id="phone"
+                                    <input type="tel" class="form--control radius-5" id="phone"  name="phone" required
                                         placeholder="Type Number">
                                 </div>
                                 <div class="single-input mt-4">
-                                    <textarea class="form--control form-message radius-5"></textarea>
+                                    <textarea class="form--control form-message radius-5" name="question" placeholder="Question" required ></textarea>
                                 </div>
-                                <button type="submit" class="submit-btn radius-5"> Save Changes </button>
+                                <button type="submit" name="contact_us" class="submit-btn radius-5"> Save Changes </button>
                             </form>
                         </div>
                     </div>

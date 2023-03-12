@@ -1,5 +1,5 @@
 <?php
-if(isset($_GET['logout'])){
+if (isset($_GET['logout'])) {
     unset($_SESSION['authUser']);
     header("Location: login.php");
 }
@@ -8,15 +8,15 @@ if(isset($_GET['logout'])){
     <div class="sidebar-wrapper active">
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
-                <?php if($User['type'] == "hotel"){ ?>
+                <?php if ($User['type'] == "hotel") {?>
                 <div class="logo">
-                    <a href="index.php"><img src="../images/hotels/<?= $User['image']?>"
-                            alt="../images/hotels/<?= $User['image']?>" srcset="" /></a>
+                    <a href="index.php"><img src="../images/hotels/<?=$User['image']?>"
+                            alt="../images/hotels/<?=$User['image']?>" srcset="" /></a>
                 </div>
-                <?php } ?>
+                <?php }?>
                 <br />
                 <div class="theme-toggle d-flex mt-2 align-items-center">
-                    <h6>Welcome! <?= $User['name'] ?></h6>
+                    <h6>Welcome! <?=$User['name']?></h6>
                 </div>
                 <div class="sidebar-toggler x">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -33,12 +33,6 @@ if(isset($_GET['logout'])){
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="hotels.php" class="sidebar-link">
-                        <i class="bi bi-shop"></i>
-                        <span>Hotels</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
                     <a href="profile.php" class="sidebar-link">
                         <i class="bi bi-pen-fill"></i>
                         <span>Edit Profile</span>
@@ -50,10 +44,18 @@ if(isset($_GET['logout'])){
                         <span>Change Password</span>
                     </a>
                 </li>
+                <?php if ($User['type'] == "hotel") {?>
+
                 <li class="sidebar-item">
                     <a href="rooms.php" class="sidebar-link">
                         <i class="bi bi-view-list"></i>
                         <span>Rooms</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="pendingReservations.php" class="sidebar-link">
+                        <i class="bi bi-view-list"></i>
+                        <span>Pending Reservations</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -62,7 +64,29 @@ if(isset($_GET['logout'])){
                         <span>Reservations</span>
                     </a>
                 </li>
+                <?php } else {?>
 
+                <li class="sidebar-item">
+                    <a href="hotels.php" class="sidebar-link">
+                        <i class="bi bi-shop"></i>
+                        <span>Hotels</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="faq.php" class="sidebar-link">
+                        <i class="bi bi-view-list"></i>
+                        <span>FAQ</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="contact.php" class="sidebar-link">
+                        <i class="bi bi-view-list"></i>
+                        <span>Questions</span>
+                    </a>
+                </li>
+
+                <?php }?>
 
                 <li class="sidebar-item">
                     <a href="?logout" class="sidebar-link">

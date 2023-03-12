@@ -21,7 +21,6 @@
                     <li><a href="index.php"> Home </a></li>
                     <li><a href="about.php"> About </a></li>
                     <li><a href="contact.php"> Contact Us </a></li>
-                    <li><a href="#"> Blog </a></li>
                     <?php 
                     if(isset($_SESSION['authCustomer'])){?>
                     <li><a href="dashboard.php"> Dashboard </a></li>
@@ -64,9 +63,9 @@
                         </div>
                         <div class="navbar-author-wrapper">
                             <div class="navbar-author-wrapper-list">
-                                <a href="signup.html" class="navbar-author-wrapper-list-item"> Profile </a>
-                                <a href="login.html" class="navbar-author-wrapper-list-item"> Edit Profile </a>
-                                <span class="navbar-author-wrapper-list-item"> Log Out </span>
+                                <a href="profile.php" class="navbar-author-wrapper-list-item"> Profile </a>
+                                <a href="editProfile.php" class="navbar-author-wrapper-list-item"> Edit Profile </a>
+                                <a href="?logout" class="navbar-author-wrapper-list-item"> Log out </a>
                             </div>
                         </div>
                     </div>
